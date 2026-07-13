@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinguaBot IA</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#eceff1;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.chat{
+width:420px;
+height:700px;
+background:white;
+border-radius:20px;
+display:flex;
+flex-direction:column;
+overflow:hidden;
+box-shadow:0 10px 35px rgba(0,0,0,.2);
+}
+
+.header{
+background:#10a37f;
+color:white;
+padding:18px;
+font-size:24px;
+font-weight:bold;
+text-align:center;
+}
+
+.sub{
+font-size:13px;
+margin-top:5px;
+}
+
+#messages{
+flex:1;
+overflow:auto;
+padding:20px;
+background:#f7f7f7;
+}
+
+.bot,.user{
+max-width:85%;
+padding:12px;
+border-radius:15px;
+margin-bottom:12px;
+line-height:1.5;
+}
+
+.bot{
+background:white;
+}
+
+.user{
+background:#10a37f;
+color:white;
+margin-left:auto;
+}
+
+.inputArea{
+display:flex;
+padding:12px;
+background:white;
+}
+
+input{
+flex:1;
+padding:12px;
+font-size:16px;
+border-radius:10px;
+border:1px solid #ccc;
+outline:none;
+}
+
+button{
+margin-left:8px;
+padding:12px 20px;
+border:none;
+border-radius:10px;
+background:#10a37f;
+color:white;
+cursor:pointer;
+font-weight:bold;
+}
+
+button:hover{
+background:#0d8d6d;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="chat">
+
+<div class="header">
+📚 LinguaBot IA
+<div class="sub">
+Tu asistente de Lengua y Literatura
+</div>
+</div>
+
+<div id="messages">
+
+<div class="bot">
+¡Hola! 👋<br><br>
+
+Soy <b>LinguaBot IA</b>.
+
+Puedes preguntarme sobre:
+
+• Sustantivos
+
+• Verbos
+
+• Adjetivos
+
+• Pronombres
+
+• Ortografía
+
+• Literatura
+
+• Géneros literarios
+
+• Signos de puntuación
+
+• Sinónimos
+
+• Antónimos
+
+• Tildes
+
+• Comprensión lectora
+
+• Redacción
+</div>
+
+</div>
+
+<div class="inputArea">
+
+<input
+id="txt"
+placeholder="Escribe tu pregunta...">
+
+<button onclick="enviar()">Enviar</button>
+
+</div>
+
+</div>
+
+<script>
+
+const mensajes=document.getElementById("messages");
+
+function agregar(texto,tipo){
+
+const div=document.createElement("div");
+
+div.className=tipo;
+
+div.innerHTML=texto;
+
+mensajes.appendChild(div);
+
+mensajes.scrollTop=mensajes.scrollHeight;
+
+}
+
+function responder(p){
+
+p=p.toLowerCase();
+
+if(p.includes("hola"))
+return "¡Hola! 😊 ¿En qué tema de Lengua puedo ayudarte?";
+
+if(p.includes("sustantivo"))
+return "Un sustantivo es una palabra que sirve para nombrar personas, animales, objetos, lugares o ideas.<br><br>Ejemplos:<br>• casa<br>• perro<br>• María<br>• amistad";
+
+if(p.includes("verbo"))
+return "Los verbos expresan acciones, estados o procesos.<br><br>Ejemplos:<br>correr<br>leer<br>estudiar<br>dormir<br>pensar.";
+
+if(p.includes("adjetivo"))
+return "Los adjetivos describen las características de un sustantivo.<br><br>Ejemplos:<br>grande<br>alto<br>inteligente<br>feliz.";
+
+if(p.includes("pronombre"))
+return "Los pronombres sustituyen al sustantivo.<br><br>Ejemplos:<br>yo<br>tú<br>él<br>nosotros.";
+
+if(p.includes("sinónimo"))
+return "Los sinónimos son palabras que tienen un significado parecido.<br><br>Bonito = hermoso.";
+
+if(p.includes("antónimo"))
+return "Los antónimos son palabras con significado contrario.<br><br>Grande = pequeño.";
+
+if(p.includes("tilde"))
+return "La tilde es el signo (´) que indica la sílaba tónica en algunas palabras.";
+
+if(p.includes("ortografía"))
+return "La ortografía reúne las reglas para escribir correctamente las palabras.";
+
+if(p.includes("cuento"))
+return "El cuento es una narración breve con pocos personajes y un solo conflicto.";
+
+if(p.includes("novela"))
+return "La novela es una narración extensa con varios personajes y diferentes acontecimientos.";
+
+if(p.includes("poema"))
+return "El poema es una composición literaria que expresa sentimientos mediante versos.";
+
+if(p.includes("metáfora"))
+return "La metáfora compara dos elementos sin usar 'como'.<br><br>Ejemplo:<br>Tus ojos son estrellas.";
+
+if(p.includes("personificación"))
+return "La personificación consiste en dar cualidades humanas a animales u objetos.";
+
+if(p.includes("signos"))
+return "Los principales signos de puntuación son:<br><br>Punto.<br>Coma,<br>Punto y coma;<br>Dos puntos:<br>¿?<br>¡!";
+
+if(p.includes("literatura"))
+return "La literatura es el arte de expresar ideas y emociones mediante el lenguaje escrito o hablado.";
+
+if(p.includes("gracias"))
+return "¡Con gusto! 😊";
+
+return "Todavía estoy aprendiendo sobre ese tema. Intenta preguntar sobre gramática, ortografía, literatura, verbos, sustantivos, adjetivos, pronombres, metáforas o signos de puntuación.";
+
+}
+
+function enviar(){
+
+const txt=document.getElementById("txt");
+
+let pregunta=txt.value.trim();
+
+if(pregunta=="") return;
+
+agregar(pregunta,"user");
+
+setTimeout(()=>{
+
+agregar(responder(pregunta),"bot");
+
+},400);
+
+txt.value="";
+
+}
+
+document.getElementById("txt").addEventListener("keypress",function(e){
+
+if(e.key==="Enter") enviar();
+
+});
+
+</script>
+
+</body>
+</html>
